@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.env
+.env.*
+venv/
+env/
+*.pkl
+*.h5
+*.model
+*.pt
+.DS_Store
+
+# Models
+model/
+*.pkl
+*.h5
+*.pt
+*.model
+
+backend/training_script.py
+
+Dataset
+
+# Logs
+*.log
+
+# Frontend (Node/Vite/React)
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+frontend/.next/
+frontend/.cache/
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# System
+.DS_Store
+Thumbs.db
+
+# OS Junk
+ehthumbs.db
+Icon?
+Desktop.ini
