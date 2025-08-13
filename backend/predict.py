@@ -3,8 +3,6 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 import pickle
 import numpy as np
 from tensorflow import keras
-from pickle_validation import SecurePickleLoader
-
 
 scaler = StandardScaler()
 
