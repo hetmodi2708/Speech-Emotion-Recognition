@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
 import PredictionPage from "./pages/PredictionPage";
-import About from "./pages/About";
 
 const App = () => {
   return (
