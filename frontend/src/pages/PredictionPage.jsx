@@ -16,7 +16,8 @@ import { useReactMediaRecorder } from "react-media-recorder";
 import MicIcon from "@mui/icons-material/Mic";
 
 // Configuration
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://35.182.111.179:8000";
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 const ALLOWED_FILE_TYPES = [".wav", ".mp3", ".webm", ".m4a", ".ogg"];
 const MAX_RECORDING_TIME = 300000; // 5 minutes in milliseconds
@@ -149,13 +150,7 @@ const PredictionPage = () => {
       audio.src = url;
     });
   };
-  useEffect(() => {
-    return () => {
-      if (mediaBlobUrl) {
-        URL.revokeObjectURL(mediaBlobUrl);
-      }
-    };
-  }, [mediaBlobUrl]);
+
   // Clear error after some time
   useEffect(() => {
     if (error) {
@@ -329,6 +324,14 @@ const PredictionPage = () => {
       resetRecordingTimer(); // Fix: Properly reset timer when recording stops
     },
   });
+
+  useEffect(() => {
+    return () => {
+      if (mediaBlobUrl) {
+        URL.revokeObjectURL(mediaBlobUrl);
+      }
+    };
+  }, [mediaBlobUrl]);
 
   // Enhanced start recording with permission handling
   const startRecording = async () => {
