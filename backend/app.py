@@ -30,6 +30,8 @@ UPLOAD_DIR = "temp_uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 origins = [
+    'https://www.vibecheckr.ca',
+    'https://vibecheckr.ca',
     'http://localhost:5173'
 ]
 
