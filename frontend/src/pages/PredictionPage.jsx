@@ -17,6 +17,7 @@ import MicIcon from "@mui/icons-material/Mic";
 
 // Configuration
 const API_BASE_URL = "https://api.vibecheckr.ca";
+// const API_BASE_URL = "http://localhost:8000";
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 const ALLOWED_FILE_TYPES = [".wav", ".mp3", ".webm", ".m4a", ".ogg"];
 const MAX_RECORDING_TIME = 300000; // 5 minutes in milliseconds
@@ -77,8 +78,22 @@ const PredictionPage = () => {
   };
 
   // Audio validation function
+  // Simplified audio validation function
   const validateAudioContent = async (audioBlob) => {
     return new Promise((resolve) => {
+      // Basic checks first
+      if (!audioBlob || audioBlob.size === 0) {
+        resolve("Recording is empty");
+        return;
+      }
+
+      if (audioBlob.size < 1000) {
+        // Less than 1KB is probably too small
+        resolve("Recording too short or corrupted");
+        return;
+      }
+
+      // Create audio element to check if it's valid
       const audio = new Audio();
       const url = URL.createObjectURL(audioBlob);
 
@@ -91,60 +106,20 @@ const PredictionPage = () => {
           return;
         }
 
-        // Check if audio has content (basic check)
-        const audioContext = new (window.AudioContext ||
-          window.webkitAudioContext)();
-        const reader = new FileReader();
-
-        reader.onload = async (e) => {
-          try {
-            const arrayBuffer = e.target.result;
-            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-
-            // Check for silence (very basic check)
-            let hasSound = false;
-            for (
-              let channel = 0;
-              channel < audioBuffer.numberOfChannels;
-              channel++
-            ) {
-              const channelData = audioBuffer.getChannelData(channel);
-              for (let i = 0; i < channelData.length; i++) {
-                if (Math.abs(channelData[i]) > 0.01) {
-                  // Threshold for "sound"
-                  hasSound = true;
-                  break;
-                }
-              }
-              if (hasSound) break;
-            }
-
-            if (!hasSound) {
-              resolve(
-                "No audio detected. Please ensure your microphone is working and try again."
-              );
-            } else {
-              resolve(null); // No error
-            }
-          } catch (error) {
-            console.warn(
-              "Audio content validation failed, proceeding anyway:",
-              error
-            );
-            resolve(null); // Proceed if validation fails
-          } finally {
-            reader.readAsArrayBuffer(audioBlob);
-            if (audioContext) {
-              audioContext.close();
-            }
-          }
-        };
+        // If we get here, the audio is probably valid
+        resolve(null); // No error
       });
 
       audio.addEventListener("error", () => {
         URL.revokeObjectURL(url);
-        resolve("Invalid audio file");
+        resolve("Invalid or corrupted audio file");
       });
+
+      // Set a timeout in case loading hangs
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+        resolve(null); // Proceed anyway after timeout
+      }, 5000);
 
       audio.src = url;
     });
