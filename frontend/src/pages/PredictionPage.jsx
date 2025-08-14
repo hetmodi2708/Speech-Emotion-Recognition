@@ -16,7 +16,7 @@ import { useReactMediaRecorder } from "react-media-recorder";
 import MicIcon from "@mui/icons-material/Mic";
 
 // Configuration
-const API_BASE_URL = "https://35.182.111.179:8000";
+const API_BASE_URL = "https://api.vibecheckr.ca";
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 const ALLOWED_FILE_TYPES = [".wav", ".mp3", ".webm", ".m4a", ".ogg"];
 const MAX_RECORDING_TIME = 300000; // 5 minutes in milliseconds
