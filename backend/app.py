@@ -21,6 +21,10 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 # Configuration
 MAX_FILE_SIZE = 50 * 1024 * 1024  # 50MB limit
 ALLOWED_EXTENSIONS = {".wav", ".mp3", ".webm", ".m4a", ".ogg"}

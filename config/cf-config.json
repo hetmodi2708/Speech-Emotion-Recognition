@@ -1,0 +1,44 @@
+{
+  "CallerReference": "myapp-frontend-2024",
+  "Aliases": {
+    "Quantity": 2,
+    "Items": ["vibecheckr.ca", "www.vibecheckr.ca"]
+  },
+  "DefaultRootObject": "index.html",
+  "Origins": {
+    "Quantity": 1,
+    "Items": [{
+      "Id": "s3-frontend",
+      "DomainName": "vibechechkr-frontend.s3.ca-central-1.amazonaws.com",
+      "S3OriginConfig": {"OriginAccessIdentity": ""},
+      "OriginAccessControlId": "E3A183B275Y8VX"
+    }]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "s3-frontend",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+    "Compress": true,
+    "AllowedMethods": {
+      "Quantity": 2,
+      "Items": ["GET", "HEAD"]
+    }
+  },
+  "CustomErrorResponses": {
+    "Quantity": 1,
+    "Items": [{
+      "ErrorCode": 403,
+      "ResponsePagePath": "/index.html",
+      "ResponseCode": "200",
+      "ErrorCachingMinTTL": 0
+    }]
+  },
+  "ViewerCertificate": {
+    "ACMCertificateArn": "arn:aws:acm:us-east-1:518692946043:certificate/dbe2a270-9040-404f-9c06-221f3ab9dec6",
+    "SSLSupportMethod": "sni-only",
+    "MinimumProtocolVersion": "TLSv1.2_2021"
+  },
+  "HttpVersion": "http2and3",
+  "Enabled": true,
+  "Comment": "vibecheckr frontend"
+}
