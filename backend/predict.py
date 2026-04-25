@@ -18,8 +18,8 @@ with open('./model/rf_final.pkl', 'rb') as f:
 with open('./model/scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 
-cnn_final =  keras.models.load_model('./model/cnn_final.h5')
-lstm_final = keras.models.load_model('./model/lstm_final.h5')
+cnn_final =  keras.models.load_model('./model/cnn_final.keras')
+lstm_final = keras.models.load_model('./model/lstm_final.keras')
 
 
 def predict_emotion(audio_path, features):
