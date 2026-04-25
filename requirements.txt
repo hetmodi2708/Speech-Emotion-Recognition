@@ -1,7 +1,7 @@
 fastapi
 uvicorn[standard]
-tensorflow==2.15.0
-keras==2.15.0
+tensorflow
+keras
 librosa==0.10.1
 scikit-learn==1.4.1.post1
 numpy==1.26.4
