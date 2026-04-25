@@ -1,3 +1,7 @@
+import os
+os.environ["LIBROSA_CACHE_DIR"] = "/tmp/librosa_cache"
+os.environ["NUMBA_CACHE_DIR"] = "/tmp/numba_cache"
+
 import numpy as np
 import librosa
 
