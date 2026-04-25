@@ -17,3 +17,5 @@ pooch
 lazy_loader
 joblib
 python-multipart
+pydub
+slowapi
