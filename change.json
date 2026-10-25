@@ -1,0 +1,17 @@
+{
+    "Changes":  [
+                    {
+                        "ResourceRecordSet":  {
+                                                  "TTL":  300,
+                                                  "Name":  "_21f0d22713ee0f7840855e58bc27dc85.vibecheckr.ca.",
+                                                  "Type":  "CNAME",
+                                                  "ResourceRecords":  [
+                                                                          {
+                                                                              "Value":  "_1b267fefd4ddf69dc90bb4b5b05f14f3.wzccmgtwzk.acm-validations.aws."
+                                                                          }
+                                                                      ]
+                                              },
+                        "Action":  "UPSERT"
+                    }
+                ]
+}
